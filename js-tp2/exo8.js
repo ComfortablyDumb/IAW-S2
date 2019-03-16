@@ -32,7 +32,7 @@ window.onload = function () {
 			}
 		}
 		if(!checked){
-			msg("Tu es si lent","#FF00FF");
+			msg("Trop lent","#FF00FF");
 		}
 		
 	}
@@ -43,7 +43,7 @@ window.onload = function () {
 			msg("Bonne réponse","green");
 		}
 		else{
-			msg("Gros naze","red");
+			msg("Mauvaise réponse","red");
 			console.log(reponse.value)
 		}
 		
