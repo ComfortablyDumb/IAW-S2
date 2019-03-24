@@ -2,7 +2,7 @@
 window.onload = function() {
 
 	// pour stocker l'élément en cours d'édition
-	let editable;
+	let editable = null;
 
 	// ici, on fabrique l'éditeur et tous ses composants
 
@@ -40,7 +40,16 @@ window.onload = function() {
 	//   * effectue un requête AJAX au script 'edit.php' avec
 	//     comme paramètres 'id' l'id de l'élément à éditer et
 	//     comme paramètre 'content' le nouveau contenu
+
+	
+
 	saveButton.onclick = function() {
+		editable.innerHTML = textarea.value;
+		let id = editable.getAttribute("data-id");
+		let content  = encodeURI(textarea.value)
+		
+		new simpleAjax("edit.php","post","id="+id+"&content"+content);
+
 		
 	};
 
@@ -49,6 +58,9 @@ window.onload = function() {
 	//   * supprimer le contenu du 'textarea'
 	//   * cacher l'éditeur
 	cancelButton.onclick = function() {
+		editable = null;
+		textarea.value = "";
+		editor.style.visibility = "hidden";
 		
 	};
 
@@ -59,11 +71,19 @@ window.onload = function() {
 	//   * copier le contenu de l'élément dans le 'textarea'
 	//   * faire apparaître l'éditeur
 	function openEditor() {
+		editable = this;
+		textarea.value = this.innerHTML.trim();
+		editor.style.visibility = "visible";
+		
 		
 	}
 
 	// ici, il faut ajouter l'évènement 'onclick' sur tous les éléments de
 	// classe 'editable' et lier à cet évènement la fonction 'openEditor'
+	let editable_items = document.getElementsByClassName("editable");
+	for(let i = 0;i<editable_items.length;i++){
+		editable_items[i].onclick = openEditor;
+	}
 
 	
 };

@@ -27,6 +27,13 @@ window.onload = function () {
 
 	}
 
+	function isSort(array) {
+		for (let i = 0; i < array.length - 1; i++) {
+			if (array[i] > array[i + 1]) { return false; }
+		}
+		return true;
+	}
+
 	// teste si le puzzle est terminé
 	function is_finished() {
 		let out = [];
@@ -34,18 +41,18 @@ window.onload = function () {
 		for (let i = 1; i < array.length; i++) {
 			out.push(array[i].name);
 
-			sort_out = out.slice(0).sort();
-			if (sort_out == out) {
-				let result = document.getElementById("result");
-				result.style.display = "display";
+		}
 
-			}
+		if (isSort(out)) {
+			let result = document.getElementById("result");
+			result.style.visibility = "visible";
 
 		}
-		console.log(out);
-		console.log(sort_out);
-		console.log(out==sort_out);
-		
+
+		console.log(isSort(out));
+
+
+
 
 	}
 
