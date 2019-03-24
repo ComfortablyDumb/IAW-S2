@@ -46,9 +46,9 @@ window.onload = function() {
 	saveButton.onclick = function() {
 		editable.innerHTML = textarea.value;
 		let id = editable.getAttribute("data-id");
-		let content  = encodeURI(textarea.value)
+		let content  = encodeURI(textarea.value);
 		
-		new simpleAjax("edit.php","post","id="+id+"&content"+content);
+		new simpleAjax("edit.php","post","id="+id+"&content="+content);
 
 		
 	};
